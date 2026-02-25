@@ -10,6 +10,7 @@ function App() {
   const [showHistory, setShowHistory] = useState(false)
   const [history, setHistory] = useState([])
   const [message, setMessage] = useState('')
+  const [showHowItWorks, setShowHowItWorks] = useState(false)
   const [cyberpunk, setCyberpunk] = useState(() => {
     const saved = localStorage.getItem('cyberpunk-theme')
     return saved ? JSON.parse(saved) : false
@@ -134,6 +135,24 @@ function App() {
         <button className="theme-toggle" onClick={() => setCyberpunk(!cyberpunk)} title="Toggle cyberpunk theme">
           {cyberpunk ? '◆' : '◇'}
         </button>
+      </div>
+
+      <div className="info-section">
+        <button className="info-toggle" onClick={() => setShowHowItWorks(!showHowItWorks)}>
+          {showHowItWorks ? '▼' : '▶'} How it works
+        </button>
+        {showHowItWorks && (
+          <div className="how-it-works">
+            <ol>
+              <li><strong>Enter a contact:</strong> Type a phone number and/or email address</li>
+              <li><strong>Check the database:</strong> Click "Check" to see if we've already reached out to this person</li>
+              <li><strong>Already contacted?</strong> If yes, you'll see when we contacted them. Skip this prospect.</li>
+              <li><strong>New prospect?</strong> If no, click "Add to Database" to log it</li>
+              <li><strong>Make the call/email:</strong> Now you can reach out to them</li>
+              <li><strong>View history:</strong> Click "View History" to see all logged outreaches</li>
+            </ol>
+          </div>
+        )}
       </div>
 
       <div className="form-section">
